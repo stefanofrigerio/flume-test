@@ -13,9 +13,9 @@ RUN mv /opt/apache-flume-1.6.0-bin /opt/flume
 
 RUN apk add --update bash && rm -rf /var/cache/apk/*
 
-ADD start-flume.sh /opt/flume/bin/start-flume
+ADD cfg/start-flume.sh /opt/flume/bin/start-flume
 
-ADD flume.conf /
+ADD cfg/flume.conf /
 
 ENV PATH /opt/flume/bin:/opt/java/bin:$PATH
 
