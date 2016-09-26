@@ -1,4 +1,4 @@
-/source
-/sink
-/channel
+/source/*
+/sink/*
+/channel/*
 ./DS_Store
