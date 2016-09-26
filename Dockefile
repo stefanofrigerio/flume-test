@@ -1,0 +1,23 @@
+FROM lwieske/java-8:jdk-8u102-slim
+
+RUN mkdir /opt && \
+	mkdir /sink && \
+	mkdir /channel && \
+	mkdir /source && \
+	mkdir /channel/data && \
+        mkdir /channel/checkpoint 
+
+RUN wget -qO- http://archive.apache.org/dist/flume/1.6.0/apache-flume-1.6.0-bin.tar.gz \
+  | tar zxvf - -C /opt/
+RUN mv /opt/apache-flume-1.6.0-bin /opt/flume
+
+RUN apk add --update bash && rm -rf /var/cache/apk/*
+
+ADD start-flume.sh /opt/flume/bin/start-flume
+
+ADD flume.conf /
+
+ENV PATH /opt/flume/bin:/opt/java/bin:$PATH
+
+CMD [ "start-flume" ]
+
